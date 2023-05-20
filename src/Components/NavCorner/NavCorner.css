@@ -1,0 +1,21 @@
+@import url("../../utils.css");
+
+.Nav-corner-side-div{
+    position: fixed;
+
+    width: 50px;
+    height: 100vh;
+
+    background-color: var(--c1);
+}
+
+.Nav-corner-up-div{
+    position: fixed;
+    
+    top: 0;
+    left: 50px;
+    
+    width: calc(100vw - 50px);
+    height: 58px;
+    background-color: var(--c1);
+}
