@@ -1,5 +1,4 @@
 import './NavCorner.css'
-import { Container } from '@material-ui/core'
 
 
 const NavCorner = ({ isMap }) => {
