@@ -2,9 +2,11 @@
 
 .Nav-corner-side-div{
     position: fixed;
-
+    
+    top: 58px;
+    
     width: 50px;
-    height: 100vh;
+    height: calc(100vh - 58px);
 
     background-color: var(--c1);
 }
@@ -13,9 +15,8 @@
     position: fixed;
     
     top: 0;
-    left: 50px;
     
-    width: calc(100vw - 50px);
+    width: 100vw;
     height: 58px;
     background-color: var(--c1);
 }

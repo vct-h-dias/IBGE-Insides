@@ -4,7 +4,7 @@ import NavCorner from '../../Components/NavCorner/NavCorner.jsx'
 function MapScreen() {
   return (
     
-    <NavCorner/>
+    <NavCorner isMap={true}/>
 
     )
 }

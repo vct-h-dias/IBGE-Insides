@@ -1,9 +1,10 @@
 import './LandingPage.css'
+import NavCorner from '../../Components/NavCorner/NavCorner'
 
 function LandingPage() {
   return (
     
-    <h1>Landing Page 🤙</h1>
+    <NavCorner isMap={false} />
 
     )
 }
