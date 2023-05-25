@@ -1,12 +1,13 @@
 import './LandingPage.css'
-import NavCorner from '../../Components/NavCorner/NavCorner'
+import Header from '../../Components/Landing-Page-Components/Header/Header.jsx'
 
 function LandingPage() {
   return (
-    
-    <NavCorner isMap={false} />
+    <Header/>
 
-    )
+    
+
+  )
 }
 
 export default LandingPage

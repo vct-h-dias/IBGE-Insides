@@ -1,0 +1,52 @@
+@import url("../../../../../utils.css");
+
+/*+===================</> Header-Container </>+===================*/
+
+    .header-container{
+        position: fixed;
+    }
+
+/*+===================</> Header-Title </>+===================*/
+
+    .header-div-content{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        height: 6rem;
+        width: 100vw;
+        font-size: 120%;
+
+        background-color: var(--p-c-2);
+        
+        color: var(--e-c-1);
+    }
+
+/*+===================</> Header-Display </>+===================*/
+
+    .header-display-div{
+        display: flex;
+        justify-content: center;
+        background-color: #2222225b;
+    }
+
+    .display-option{
+        display:inline;
+        text-align: center;
+    }
+
+    .display-option a{
+        display: inline-block;
+
+        padding: 5px;
+        width: 19.792vw;
+
+        border-inline: 1px solid var(--e-c-3);
+        background-color: #222222ab;
+        color: var(--e-c-2);
+    }
+    .display-option a:hover{
+        background-color: var(--e-c-4);
+    }
+
+/*+===================</> EOF </>+===================*/

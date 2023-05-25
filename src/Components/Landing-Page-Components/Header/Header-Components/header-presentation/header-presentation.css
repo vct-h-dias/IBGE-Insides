@@ -1,0 +1,44 @@
+@import url("../../../../../utils.css");
+
+
+/*+===================</> Content-background </>+===================*/
+
+    .content-background-div{
+        position: absolute;
+
+        top: 5.9rem;
+        width: 100vw;
+        height: 69vh;
+        
+        background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, var(--p-c-1) 100%), url('../../../../../assets/brasil-bg.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+
+        color: var(--e-c-2);
+
+        z-index: -1;
+    }
+
+/*+===================</> Content-title </>+===================*/
+
+.title-div{
+    margin-top: 6rem;
+    margin-bottom: 3rem;
+
+    background-color: rgba(0, 0, 0, 0.205);
+    
+    text-align: center;
+}
+
+/*+===================</> Content-args </>+===================*/
+
+.args-div{
+    display: flex;
+    justify-content: center;
+}
+.args-div ul{
+    text-align: start;
+}
+.args-div li{
+    margin: 4rem;
+}
