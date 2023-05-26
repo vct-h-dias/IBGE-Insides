@@ -1,9 +1,9 @@
 @import url("../../../../../utils.css");
-
 /*+===================</> Header-Container </>+===================*/
 
     .header-container{
-        position: fixed;
+        position:fixed;
+        top: 0;
     }
 
 /*+===================</> Header-Title </>+===================*/

@@ -1,0 +1,8 @@
+@import url("../../../../../utils.css");
+
+.card-container-div{
+    height: 150px;
+    width: 150px;
+    background-color: aliceblue;
+}
+

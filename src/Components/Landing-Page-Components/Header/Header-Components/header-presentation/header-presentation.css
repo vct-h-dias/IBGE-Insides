@@ -4,9 +4,9 @@
 /*+===================</> Content-background </>+===================*/
 
     .content-background-div{
-        position: absolute;
-
-        top: 5.9rem;
+        margin-top: 6rem;
+        padding-top: 7rem;
+        font-size: 120%;
         width: 100vw;
         height: 69vh;
         
@@ -14,7 +14,7 @@
         background-repeat: no-repeat;
         background-size: cover;
 
-        color: var(--e-c-2);
+        color: var(--e-c-1);
 
         z-index: -1;
     }
@@ -22,9 +22,6 @@
 /*+===================</> Content-title </>+===================*/
 
 .title-div{
-    margin-top: 6rem;
-    margin-bottom: 3rem;
-
     background-color: rgba(0, 0, 0, 0.205);
     
     text-align: center;
@@ -32,13 +29,16 @@
 
 /*+===================</> Content-args </>+===================*/
 
-.args-div{
-    display: flex;
-    justify-content: center;
-}
-.args-div ul{
-    text-align: start;
-}
-.args-div li{
-    margin: 4rem;
-}
+    .args-div{
+        display: flex;
+        justify-content: center;
+    }
+    .args-div ul{
+        text-align: center;
+        
+    }
+    .args-div li{
+        margin: 4rem;
+    }
+    
+/*+===================</> EOF </>+===================*/
