@@ -3,7 +3,6 @@
 .body-div{
     margin-top: 6rem;
     height: 100rem;
-    background-color: red;
 }
 
 .body-title-div{
@@ -12,7 +11,6 @@
 }
 
 .cardArea-div{
-    background-color: red;
     height: 100%;
     width: 50%;
 }
