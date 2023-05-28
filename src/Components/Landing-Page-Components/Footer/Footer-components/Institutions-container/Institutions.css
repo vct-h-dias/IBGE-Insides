@@ -1,0 +1,30 @@
+@import "../../../../../utils.css";
+
+
+.footer-title-div{
+    text-align: center;
+    color: var(--e-c-1);
+}
+
+.footer-images-div{
+    padding-top: 2rem;
+    display: flex;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.image-card-div{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--e-c-1);
+    padding: 10px;
+    border: 1px solid var(--p-c-2);
+    border-radius: 5px;
+    margin-bottom: 10rem;
+    overflow: hidden;
+}
+
+.image-card-div img{
+    width: 25rem;
+}

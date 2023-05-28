@@ -8,7 +8,7 @@ const Card = ({ title, text, image, direction}) => {
                 <div className="image-div">
                     <img src={image} alt="representation" />
                 </div>
-                <div className="info-div">
+                <div className="text-card-div">
                     <h1>{title}</h1>
                     <p>{text}</p>
                 </div>
@@ -17,7 +17,7 @@ const Card = ({ title, text, image, direction}) => {
         :
         <>
             <div className="card-container-div right">
-                <div className="info-div">
+                <div className="text-card-div">
                     <h1>{title}</h1>
                     <p>{text}</p>
                 </div>
