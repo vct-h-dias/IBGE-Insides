@@ -1,5 +1,7 @@
 import '../Institutions-container/Institutions.css'
 
+import IFSP from "../../../../../assets/ifsp-footer-image.png"
+import IBGE from "../../../../../assets/ibge-footer-image.png"
 
 const Institutions = () => {
     return(
@@ -10,10 +12,10 @@ const Institutions = () => {
                 </div>
                 <div className="footer-images-div">
                     <div className="image-card-div">
-                        <img src="src/assets/ifsp-footer-image.png" alt="IFSP-image" />
+                        <img src={IFSP} alt="IFSP-image" />
                     </div>
                     <div className="image-card-div">
-                        <img src="src/assets/ibge-footer-image.png" alt="IBGE-image" />
+                        <img src={IBGE} alt="IBGE-image" />
                     </div>
                 </div>
             </div>
