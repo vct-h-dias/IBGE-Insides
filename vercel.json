@@ -1,6 +1,6 @@
 {
   "rewrites":  [
-    {"source": "/Map", "destination": "/Map"},
+    {"source": "/Map", "destination": "/"},
     {
       "source": "/view-source",
       "destination": "https://github.com/vercel/vercel"
