@@ -11,7 +11,7 @@ function headerContainer() {
                 <ul>
                     <li className="display-option"><a href="#">Início</a></li>
                     <li className="display-option"><a href="#funcionalidades">Funcionaidades</a></li>
-                    <li className="display-option"><a href="#">Visualizar</a></li>
+                    <li className="display-option"><a href="Map">Visualizar</a></li>
                     <li className="display-option"><a href="#">Rodapé</a></li>
                 </ul>
             </div>
