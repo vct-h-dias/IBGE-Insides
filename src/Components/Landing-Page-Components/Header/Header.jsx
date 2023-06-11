@@ -8,9 +8,9 @@ const Header = () => {
             </div>
             <div className=" h-full w-fit flex">
                 <ul className="inline-flex gap-5">
+                    <li className="my-auto font-medium text-zinc-700 duration-100 hover:text-black"><a href="#">Mapa</a></li>
                     <li className="my-auto font-medium text-zinc-700 duration-100 hover:text-black"><a href="#funcoesContainer">Funções</a></li>
                     <li className="my-auto font-medium text-zinc-700 duration-100 hover:text-black"><a href="#informationsContainer">Informações</a></li>
-                    <li className="my-auto font-medium text-zinc-700 duration-100 hover:text-black"><a href="/Map">Mapa</a></li>
                     <li className="my-auto font-medium text-zinc-700 duration-100 hover:text-black"><a href="#footerContainer">Rodapé</a></li>
                 </ul>
             </div>

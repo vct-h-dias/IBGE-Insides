@@ -37,19 +37,19 @@ const Body = () => {
         <div className='flex justify-center mt-14'>
           <h1 className='text-2xl font-semibold border-black border-b-2'>Algumas Funcionalidades</h1>
         </div>
-        <Carrousel/>
+        <Carrousel />
       </div>
-      
+
       <div className='h-48' id='informationsContainer'></div>
 
       <div>
         <div className='flex justify-center'>
-            <h1 className='text-2xl font-semibold border-black border-b-2 mb-14'>Desenvolvedores</h1>
+          <h1 className='text-2xl font-semibold border-black border-b-2 mb-14'>Desenvolvedores</h1>
         </div>
         <div className='flex justify-evenly w-full'>
-          <ProfileCard imgIcon={Matheus} profileName={"Matheus Camargo"} cFunction={"Estudante do IFSP - Campinas"} gLink={"https://github.com/MatheusCamargoGinebro"}/>
-          <ProfileCard imgIcon={VictorH} profileName={"Victor Hugo"} cFunction={"Estudante do IFSP - Campinas"} gLink={"https://github.com/vct-h-dias"}/>
-          <ProfileCard imgIcon={VictorS} profileName={"Victor Samuel"} cFunction={"Estudante do IFSP - Campinas"} gLink={"https://github.com/VitaoDibas"}/>
+          <ProfileCard imgIcon={Matheus} profileName={"Matheus Camargo"} cFunction={"Estudante do IFSP - Campinas"} gLink={"https://github.com/MatheusCamargoGinebro"} />
+          <ProfileCard imgIcon={VictorH} profileName={"Victor Hugo"} cFunction={"Estudante do IFSP - Campinas"} gLink={"https://github.com/vct-h-dias"} />
+          <ProfileCard imgIcon={VictorS} profileName={"Victor Samuel"} cFunction={"Estudante do IFSP - Campinas"} gLink={"https://github.com/VitaoDibas"} />
         </div>
       </div>
 
@@ -57,21 +57,23 @@ const Body = () => {
 
       <div>
         <div className='flex justify-center'>
-            <h1 className='text-2xl font-semibold border-black border-b-2 mb-14'>Instituições envolvidas</h1>
+          <h1 className='text-2xl font-semibold border-black border-b-2 mb-14'>Instituições envolvidas</h1>
         </div>
         <div className='flex justify-evenly items-center'>
           <a href="https://portal.cmp.ifsp.edu.br/" target="_blank">
             <div className='flex items-center w-96 h-36'>
-                <img src={IFSP} alt="IFSP-image" className='m-auto'/>
+              <img src={IFSP} alt="IFSP-image" className='m-auto' />
             </div>
           </a>
           <a href="https://servicodados.ibge.gov.br/api/docs" target="_blank">
             <div className='flex w-96 h-36'>
-                <img src={IBGE} alt="IBGE-image" className='m-auto'/>
+              <img src={IBGE} alt="IBGE-image" className='m-auto' />
             </div>
           </a>
         </div>
       </div>
+
+      <div className='h-96'></div>
     </div>
   );
 };
