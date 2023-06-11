@@ -7,7 +7,6 @@ import Footer from '../../Components/Landing-Page-Components/Footer/Footer'
 function LandingPage() {
   return (
     <>
-
       <Header/>
       
       <Body/>
