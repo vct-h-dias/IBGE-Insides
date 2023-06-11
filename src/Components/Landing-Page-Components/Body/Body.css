@@ -1,16 +1,1 @@
 @import url("../../../utils.css");
-
-.body-div{
-    margin-top: 6rem;
-    height: 100rem;
-}
-
-.body-title-div{
-    text-align: center;
-    color: var(--e-c-1);
-}
-
-.cardArea-div{
-    height: 100%;
-    width: 50%;
-}

@@ -1,6 +1,5 @@
 body{
     background-color: var(--p-c-1);
-    overflow-x: hidden;
 }
 
 *{

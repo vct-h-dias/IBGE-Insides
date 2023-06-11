@@ -1,42 +1,38 @@
-import '../Body/Body.css'
+import Carrousel from '../Carrousel/Carrousel.jsx';
 
-import Card from './Body-Components/card/Card.jsx'
-
-import Ranking from "../../../assets/ranking-card-image.png"
-import Brasil from "../../../assets/brasil-card-image.png"
-import Search from "../../../assets/search-card-image.png"
+import NamiczLogo from '../../../assets/namicz-Icon.svg';
 
 const Body = () => {
-    return (
-        <>
-            <div className='body-div'>
-                <div className="body-title-div" id='funcionalidades'>
-                    <h1>Algumas Funcionalidades</h1>
-                </div>
-                <div className="cardArea-div">
-                    <Card
-                        title={"Ranking"}
-                        text={"Possibilitamos o acesso do ranking de frequencia de nascidos por década (a partir de 1950). Sendo possível a visualização dos nomes mais ocorridos desde então."}
-                        image={Ranking} 
-                        direction="right" 
-                    />
-                    <Card
-                        title={"Estados"}
-                        text={"A analise de nomes pode ser feita a partir da seleção de estados, o que possibilita tanto a pesquisa naquele munícipio do fenômeno de nomes (seja ela um nome específico ou o ranking daquele estado)"}
-                        image={Brasil}
-                        direction="left"
-                    />
-                    <Card 
-                        title={"Pesquisa"}
-                        text={"Nomes espécifios podem ser buscados em nossa plataforma. Conseguimos fazer a análise da frequência por décadas desse nome, sendo possível filtra-los também por município."}
-                        image={Search}
-                        direction="right" 
-                    />
-                </div>
 
-            </div>
-        </>
-    )
-}
+  return (
+    <div className='mt-20 bg-slate-200' id='funcoesContainer'>
+      <div className='flex justify-center'>
+        <h1 className='text-3xl font-semibold my-16'>Plataforma de Visualização de Dados Demográficos e Geográficos</h1>
+      </div>
 
-export default Body
+      <div className='mx-6 py-16 flex justify-evenly border-y-2 border-slate-700 border-dotted bg-slate-300'>
+        <div className='w-3/5 gap-10 text-lg'>
+          <h1 className='mb-2 text-2xl font-medium'><span className='border-b-4 border-slate-800'>O Que é isso?</span></h1>
+          <p className='font-light'>
+            O NAMICZ é uma plataforma inovadora que foi desenvolvida com o propósito de facilitar o acesso e a
+            visualização de dados relacionados a nomes de pessoas por lugares. Com base nas extensas e
+            valiosas informações demográficas e geográficas armazenadas pelo IBGE, o NAMICZ permite aos
+            usuários explorar e analisar esses dados de forma intuitiva e acessível.
+          </p>
+          <a href="/Map" className='inline-flex mt-10 px-3 py-2 rounded-sm border-slate-500 bg-clip-padding text-slate-50 bg-slate-800 duration-100 hover:bg-slate-700'>Clique aqui para acessar o mapa!</a>
+        </div>
+        <img src={NamiczLogo} alt="namiczLogo" className='h-64' />
+      </div>
+
+      <div className='flex justify-center'>
+        <h1 className='text-2xl font-semibold mt-48 mb-10'>Algumas Funcionalidades</h1>
+      </div>
+
+      <Carrousel/>
+        
+      <div className=' h-[1024px] flex items-center justify-center'> space </div>
+    </div>
+  );
+};
+
+export default Body;

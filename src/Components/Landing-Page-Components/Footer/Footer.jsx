@@ -10,7 +10,7 @@ import Vic from "../../../assets/victor-h-image-card.jpeg"
 
 const Footer = () => {
     return(
-        <>
+        <>{/*
             <div className="footer-div">
                 <div className="footer-team-div">
                     <Institutions/>
@@ -24,8 +24,11 @@ const Footer = () => {
                         <FCard imgIcon={Vic} profileName="Victor Hugo" cFunction="Estudante do IFSP - Campinas" gLink="https://github.com/vct-h-dias"/>
                         <FCard imgIcon={Vitao} profileName="Victor Samuel" cFunction="Estudante do IFSP - Campinas" gLink="https://github.com/VitaoDibas"/>
                     </div>
+                    <div className="bg-red-500">
+                        <h1 className='text-3xl font-bold text-white'>Teste com TAILWIND CSS</h1>
+                    </div>
                 </div>
-            </div>
+            </div>*/}
         </>
     )
 }
