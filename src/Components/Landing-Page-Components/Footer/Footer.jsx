@@ -1,12 +1,3 @@
-import '../Footer/Footer.css'
-
-import FCard from './Footer-components/FCard/FCard.jsx'
-import Institutions from './Footer-components/Institutions-container/Institutions.jsx'
-
-import Camargo from "../../../assets/matheus-image-card.jpeg"
-import Vitao from "../../../assets/victor-s-image-card.jpeg"
-import Vic from "../../../assets/victor-h-image-card.jpeg"
-
 
 const Footer = () => {
     return(

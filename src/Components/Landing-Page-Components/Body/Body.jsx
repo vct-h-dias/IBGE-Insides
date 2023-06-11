@@ -1,11 +1,18 @@
 import Carrousel from '../Carrousel/Carrousel.jsx';
+import ProfileCard from '../ProfileCard/ProfileCard.jsx'
 
 import NamiczLogo from '../../../assets/namicz-Icon.svg';
+import Matheus from '../../../assets/matheus-image-card.jpeg'
+import VictorH from '../../../assets/victor-h-image-card.jpeg'
+import VictorS from '../../../assets/victor-s-image-card.jpeg'
+import IFSP from '../../../assets/ifsp-image.png'
+import IBGE from '../../../assets/ibge-image.png'
+
 
 const Body = () => {
 
   return (
-    <div className='mt-20 bg-slate-200' id='funcoesContainer'>
+    <div className='mt-20 bg-slate-200 scroll-mt-16'>
       <div className='flex justify-center'>
         <h1 className='text-3xl font-semibold my-16'>Plataforma de Visualização de Dados Demográficos e Geográficos</h1>
       </div>
@@ -24,13 +31,47 @@ const Body = () => {
         <img src={NamiczLogo} alt="namiczLogo" className='h-64' />
       </div>
 
-      <div className='flex justify-center'>
-        <h1 className='text-2xl font-semibold mt-48 mb-10'>Algumas Funcionalidades</h1>
+      <div className='h-48' id='funcoesContainer'></div>
+
+      <div className='relative bg-slate-300 w-[72rem] mx-auto border-y-2 border-dotted border-slate-900 mb-10'>
+        <div className='flex justify-center mt-14'>
+          <h1 className='text-2xl font-semibold border-black border-b-2'>Algumas Funcionalidades</h1>
+        </div>
+        <Carrousel/>
+      </div>
+      
+      <div className='h-48' id='informationsContainer'></div>
+
+      <div>
+        <div className='flex justify-center'>
+            <h1 className='text-2xl font-semibold border-black border-b-2 mb-14'>Desenvolvedores</h1>
+        </div>
+        <div className='flex justify-evenly w-full'>
+          <ProfileCard imgIcon={Matheus} profileName={"Matheus Camargo"} cFunction={"Estudante do IFSP - Campinas"} gLink={"https://github.com/MatheusCamargoGinebro"}/>
+          <ProfileCard imgIcon={VictorH} profileName={"Victor Hugo"} cFunction={"Estudante do IFSP - Campinas"} gLink={"https://github.com/vct-h-dias"}/>
+          <ProfileCard imgIcon={VictorS} profileName={"Victor Samuel"} cFunction={"Estudante do IFSP - Campinas"} gLink={"https://github.com/VitaoDibas"}/>
+        </div>
       </div>
 
-      <Carrousel/>
-        
-      <div className=' h-[1024px] flex items-center justify-center'> space </div>
+      <div className='h-48'></div>
+
+      <div>
+        <div className='flex justify-center'>
+            <h1 className='text-2xl font-semibold border-black border-b-2 mb-14'>Instituições envolvidas</h1>
+        </div>
+        <div className='flex justify-evenly items-center'>
+          <a href="https://portal.cmp.ifsp.edu.br/" target="_blank">
+            <div className='flex items-center w-96 h-36'>
+                <img src={IFSP} alt="IFSP-image" className='m-auto'/>
+            </div>
+          </a>
+          <a href="https://servicodados.ibge.gov.br/api/docs" target="_blank">
+            <div className='flex w-96 h-36'>
+                <img src={IBGE} alt="IBGE-image" className='m-auto'/>
+            </div>
+          </a>
+        </div>
+      </div>
     </div>
   );
 };
