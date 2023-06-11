@@ -1,0 +1,11 @@
+@import url("../../../utils.css");
+
+.footer-div{
+    background: linear-gradient(180deg, var(--p-c-1) 0%, var(--p-c-2) 30%, var(--p-c-3) 100%);
+
+}
+
+.footer-card-display-div{
+    display: flex;
+    justify-content: space-evenly;
+}
