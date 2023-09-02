@@ -7,8 +7,9 @@ function MapScreen() {
 
     <>
       <MapBody />
-      {/* <NavCorner isMap={true} /> */}
+      {/* <h1 className='map-title'>Map</h1> */}
     </>
+
 
   )
 }
