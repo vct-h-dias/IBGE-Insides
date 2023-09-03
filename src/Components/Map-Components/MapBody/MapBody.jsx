@@ -1,8 +1,8 @@
 import Map, { Source, Layer } from "react-map-gl";
-import "./MapBody.css";
 import * as turf from "@turf/turf";
 import { useCallback, useState } from "react";
 import getStates from "./getState";
+import "./MapBody.css";
 
 // Definindo os limites que o usuário pode navegar pelo mapa:
 const GEOFENCE = turf.polygon([
@@ -17,10 +17,10 @@ const GEOFENCE = turf.polygon([
 
 // Definindo o componente MapBody:
 function MapBody() {
+
   // carregando geojson dos estados:
   const [geojson, setGeojson] = useState(false);
   const [loading, setLoading] = useState(true);
-
   if (loading) {
     const getGeojson = async () => {
       const res = await getStates();
@@ -62,17 +62,6 @@ function MapBody() {
       <div className="bg-slate-200">
         <Map {...viewState} onMove={onMove} maxZoom={5} minZoom={3} doubleClickZoom={false} style={{ width: "100vw", height: "100vh" }} mapStyle="mapbox://styles/camarg0vs/clm1c13c401ub01p7g8sngg8x" mapboxAccessToken="pk.eyJ1IjoiY2FtYXJnMHZzIiwiYSI6ImNsbGtyeHkwNzIzYXYzcW8xYTk4dXplOTkifQ.AeclKAsX4UhZf6xCfZgwPg">
           
-          {/* Renderizando o GEOFENCE: (debug)*/}
-          <Source type="geojson" data={GEOFENCE}>
-            <Layer
-              id="geofence-layer"
-              type="fill"
-              paint={{
-                "fill-color": "rgba(255, 255, 255, 0.3)",
-              }}
-            />
-          </Source>
-          
           {/* Renderizando os estados do Brasil:*/}
           {geojson &&
             geojson.map((geo) => {
@@ -80,7 +69,9 @@ function MapBody() {
                 id: geo.sigla,
                 type: "fill",
                 paint: {
-                  "fill-color": geo.color,
+                  "fill-color": geo.selected ? "#0981AD" : geo.color,
+                  // definindo uma borda escura:
+                  "fill-outline-color": geo.selected ? "#055573" : geo.color,
                 },
               };
 
@@ -90,7 +81,6 @@ function MapBody() {
                 </Source>
               );
             })}
-
         </Map>
       </div>
     </>
