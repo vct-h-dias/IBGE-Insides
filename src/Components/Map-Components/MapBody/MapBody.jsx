@@ -60,16 +60,9 @@ function MapBody() {
   return (
     <>
       <div className="bg-slate-200">
-        <Map
-          {...viewState}
-          onMove={onMove}
-          maxZoom={5}
-          minZoom={3}
-          doubleClickZoom={false}
-          style={{ width: "100vw", height: "100vh" }}
-          mapStyle="mapbox://styles/camarg0vs/clm1c13c401ub01p7g8sngg8x"
-          mapboxAccessToken="pk.eyJ1IjoiY2FtYXJnMHZzIiwiYSI6ImNsbGtyeHkwNzIzYXYzcW8xYTk4dXplOTkifQ.AeclKAsX4UhZf6xCfZgwPg"
-        >
+        <Map {...viewState} onMove={onMove} maxZoom={5} minZoom={3} doubleClickZoom={false} style={{ width: "100vw", height: "100vh" }} mapStyle="mapbox://styles/camarg0vs/clm1c13c401ub01p7g8sngg8x" mapboxAccessToken="pk.eyJ1IjoiY2FtYXJnMHZzIiwiYSI6ImNsbGtyeHkwNzIzYXYzcW8xYTk4dXplOTkifQ.AeclKAsX4UhZf6xCfZgwPg">
+          
+          {/* Renderizando o GEOFENCE: (debug)*/}
           <Source type="geojson" data={GEOFENCE}>
             <Layer
               id="geofence-layer"
@@ -79,7 +72,8 @@ function MapBody() {
               }}
             />
           </Source>
-
+          
+          {/* Renderizando os estados do Brasil:*/}
           {geojson &&
             geojson.map((geo) => {
               const layerStyle = {
@@ -91,16 +85,12 @@ function MapBody() {
               };
 
               return (
-                <Source
-                  key={geo.sigla}
-                  id={geo.sigla}
-                  type="geojson"
-                  data={geo}
-                >
+                <Source key={geo.sigla} id={geo.sigla} type="geojson" data={geo}>
                   <Layer {...layerStyle} />
                 </Source>
               );
             })}
+
         </Map>
       </div>
     </>
