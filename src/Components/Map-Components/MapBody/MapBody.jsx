@@ -4,7 +4,6 @@ import * as turf from "@turf/turf";
 import { useCallback, useState } from "react";
 import getStates from "./getState";
 
-
 // Definindo os limites que o usuário pode navegar pelo mapa:
 const GEOFENCE = turf.polygon([
   [
@@ -18,7 +17,6 @@ const GEOFENCE = turf.polygon([
 
 // Definindo o componente MapBody:
 function MapBody() {
-
   // carregando geojson dos estados:
   const [geojson, setGeojson] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -60,37 +58,52 @@ function MapBody() {
 
   // Retornando o componente MapBody:
   return (
-    <Map {...viewState} onMove={onMove} maxZoom={5} minZoom={3} doubleClickZoom={false} style={{ width: "100vw", height: "100vh"}}
-      mapStyle="mapbox://styles/camarg0vs/clm1c13c401ub01p7g8sngg8x"
-      mapboxAccessToken="pk.eyJ1IjoiY2FtYXJnMHZzIiwiYSI6ImNsbGtyeHkwNzIzYXYzcW8xYTk4dXplOTkifQ.AeclKAsX4UhZf6xCfZgwPg">
-      
-      <Source type="geojson" data={GEOFENCE}>
-        <Layer
-          id="geofence-layer"
-          type="fill"
-          paint={{
-            "fill-color": "rgba(255, 255, 255, 0.3)",
-          }}
-        />
-      </Source>
-      
-      {geojson &&
-        geojson.map((geo) => {
-          const layerStyle = {
-            id: geo.sigla,
-            type: "fill",
-            paint: {
-              "fill-color": geo.color,
-            },
-          };
+    <>
+      <div className="bg-slate-200">
+        <Map
+          {...viewState}
+          onMove={onMove}
+          maxZoom={5}
+          minZoom={3}
+          doubleClickZoom={false}
+          style={{ width: "100vw", height: "100vh" }}
+          mapStyle="mapbox://styles/camarg0vs/clm1c13c401ub01p7g8sngg8x"
+          mapboxAccessToken="pk.eyJ1IjoiY2FtYXJnMHZzIiwiYSI6ImNsbGtyeHkwNzIzYXYzcW8xYTk4dXplOTkifQ.AeclKAsX4UhZf6xCfZgwPg"
+        >
+          <Source type="geojson" data={GEOFENCE}>
+            <Layer
+              id="geofence-layer"
+              type="fill"
+              paint={{
+                "fill-color": "rgba(255, 255, 255, 0.3)",
+              }}
+            />
+          </Source>
 
-          return (
-            <Source key={geo.sigla} id={geo.sigla} type="geojson" data={geo}>
-              <Layer {...layerStyle} />
-            </Source>
-          );
-        })}
-    </Map>
+          {geojson &&
+            geojson.map((geo) => {
+              const layerStyle = {
+                id: geo.sigla,
+                type: "fill",
+                paint: {
+                  "fill-color": geo.color,
+                },
+              };
+
+              return (
+                <Source
+                  key={geo.sigla}
+                  id={geo.sigla}
+                  type="geojson"
+                  data={geo}
+                >
+                  <Layer {...layerStyle} />
+                </Source>
+              );
+            })}
+        </Map>
+      </div>
+    </>
   );
 }
 

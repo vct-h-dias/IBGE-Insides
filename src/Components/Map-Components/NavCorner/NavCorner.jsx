@@ -5,16 +5,9 @@ const NavCorner = () => {
 
     return (
         <>
-            <div className="container">
-                <div className="Nav-corner-side-div">
-
-                </div>
-
-                <div className="Nav-corner-up-div">
-
-                </div>
-            </div>
+            <div className='w-72 h-screen bg-slate-200 fixed z-10'>
             
+            </div>  
         </>
     )
 }

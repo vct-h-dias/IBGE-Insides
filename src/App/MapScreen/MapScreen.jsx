@@ -6,8 +6,10 @@ function MapScreen() {
   return (
 
     <>
-      <MapBody />
-      {/* <h1 className='map-title'>Map</h1> */}
+      <div className='flex'>
+        <MapBody/>
+        <NavCorner/>
+      </div>
     </>
 
 
