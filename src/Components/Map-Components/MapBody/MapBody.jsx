@@ -6,10 +6,19 @@ import getStates from "./getState";
 
 const GEOFENCE = turf.circle([-52.4, -16.3], 5400, { units: "kilometers" });
 
-const geojson = await getStates();
-
-
 function MapBody() {
+  const [geojson, setGeojson] = useState(false);
+  const [loading, setLoading] = useState(true);
+  if (loading) {
+    const getGeojson = async () => {
+      const res = await getStates();
+      setGeojson(res);
+      setLoading(false);
+    };
+    getGeojson();
+  }
+
+
   const [viewState, setViewState] = useState({
     longitude: -52.4,
     latitude: -16.3,
@@ -39,22 +48,22 @@ function MapBody() {
       style={{ width: "100%", height: "100vh" }}
       mapStyle="mapbox://styles/camarg0vs/clm1c13c401ub01p7g8sngg8x"
     >
-      {geojson.map((geo) => {
-        const layerStyle = {
-          id: geo.sigla,
-          type: "fill",
-          paint: {
-            "fill-color": geo.color,
-          },
-        };
-        console.log(layerStyle);
+      {geojson &&
+        geojson.map((geo) => {
+          const layerStyle = {
+            id: geo.sigla,
+            type: "fill",
+            paint: {
+              "fill-color": geo.color,
+            },
+          };
 
-        return (
-          <Source key={geo.sigla} id={geo.sigla} type="geojson" data={geo}>
-            <Layer {...layerStyle} />
-          </Source>
-        );
-      })}
+          return (
+            <Source key={geo.sigla} id={geo.sigla} type="geojson" data={geo}>
+              <Layer {...layerStyle} />
+            </Source>
+          );
+        })}
     </Map>
   );
 }
