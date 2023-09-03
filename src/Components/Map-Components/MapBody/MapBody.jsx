@@ -1,36 +1,37 @@
 import Map, { Source, Layer } from "react-map-gl";
 import * as turf from "@turf/turf";
 import { useCallback, useState } from "react";
-import getStates from "./getState";
-import "./MapBody.css";
+// import getStates from "./getState"; //hardcode :(
+
+import geojson from "./geojson.json";
 
 // Definindo os limites que o usuário pode navegar pelo mapa:
-const GEOFENCE = turf.polygon([
-  [
-    [-77, -143],
-    [-77, 8],
-    [-30, 8],
-    [-30, -143],
-    [-77, -143],
-  ],
-]);
+const GEOFENCE = turf.circle([-52.4, -16.3], 5400, { units: "kilometers" });
 
-// Definindo o componente MapBody:
+const layerStyle = {
+  id: "data",
+  type: "fill",
+  // line: "#000000",
+  paint: {
+    "fill-color": "#fee08b",
+    "fill-opacity": 0.9,
+    "fill-outline-color": "blue", // Cor do contorno
+  },
+};
+
 function MapBody() {
+  const [hoverInfo, setHoverInfo] = useState(null);
 
-  // carregando geojson dos estados:
-  const [geojson, setGeojson] = useState(false);
-  const [loading, setLoading] = useState(true);
-  if (loading) {
-    const getGeojson = async () => {
-      const res = await getStates();
-      setGeojson(res);
-      setLoading(false);
-    };
-    getGeojson();
-  }
+  const onHover = useCallback((event) => {
+    const {
+      features,
+      point: { x, y },
+    } = event;
+    const hoveredFeature = features && features[0];
 
-  // Definindo o estado inicial do mapa:
+    setHoverInfo(hoveredFeature && { feature: hoveredFeature, x, y });
+  }, []);
+
   const [viewState, setViewState] = useState({
     longitude: -47,
     latitude: -15,
@@ -47,43 +48,47 @@ function MapBody() {
         latitude: viewState.latitude,
         zoom: viewState.zoom,
       });
-    } else {
-      setViewState({
-        longitude: -47,
-        latitude: -15,
-        zoom: viewState.zoom,
-      });
     }
   }, []);
 
   // Retornando o componente MapBody:
   return (
-    <>
-      <div className="bg-slate-200">
-        <Map {...viewState} onMove={onMove} maxZoom={5} minZoom={3} doubleClickZoom={false} style={{ width: "100vw", height: "100vh" }} mapStyle="mapbox://styles/camarg0vs/clm1c13c401ub01p7g8sngg8x" mapboxAccessToken="pk.eyJ1IjoiY2FtYXJnMHZzIiwiYSI6ImNsbGtyeHkwNzIzYXYzcW8xYTk4dXplOTkifQ.AeclKAsX4UhZf6xCfZgwPg">
-          
-          {/* Renderizando os estados do Brasil:*/}
-          {geojson &&
-            geojson.map((geo) => {
-              const layerStyle = {
-                id: geo.sigla,
-                type: "fill",
-                paint: {
-                  "fill-color": geo.selected ? "#0981AD" : geo.color,
-                  // definindo uma borda escura:
-                  "fill-outline-color": geo.selected ? "#055573" : geo.color,
-                },
-              };
-
-              return (
-                <Source key={geo.sigla} id={geo.sigla} type="geojson" data={geo}>
-                  <Layer {...layerStyle} />
-                </Source>
-              );
-            })}
-        </Map>
-      </div>
-    </>
+    <Map
+      {...viewState}
+      onMove={onMove}
+      mapboxAccessToken="pk.eyJ1IjoiY2FtYXJnMHZzIiwiYSI6ImNsbTFiczBubzBlZWEzanBla29sMHFhNngifQ.n91ThdPn4IujuqZy8V4mOg"
+      maxZoom={5.6}
+      minZoom={3.9}
+      interactiveLayerIds={["data"]}
+      doubleClickZoom={false}
+      style={{ width: "100%", height: "100vh" }}
+      mapStyle="mapbox://styles/camarg0vs/clm1c13c401ub01p7g8sngg8x"
+      onMouseMove={onHover}
+      onClick={() => {
+        console.log(hoverInfo);
+      }}
+    >
+      <Source type="geojson" data={geojson}>
+        <Layer {...layerStyle} />
+      </Source>
+      {!!hoverInfo && (
+        <div
+          className="tooltip"
+          style={{
+            background: "rgba(173, 216, 230, 0.8)",
+            position: "absolute",
+            left: hoverInfo.x,
+            top: hoverInfo.y - 100,
+            padding: "10px",
+            pointerEvents: "none",
+          }}
+        >
+          <div>Estado: {hoverInfo.feature.properties.estado}</div>
+          <div>Sigla: {hoverInfo.feature.properties.sigla}</div>
+          <div>Code Area: {hoverInfo.feature.properties.codarea}</div>
+        </div>
+      )}
+    </Map>
   );
 }
 
