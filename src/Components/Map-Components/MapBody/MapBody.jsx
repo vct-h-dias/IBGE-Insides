@@ -4,11 +4,25 @@ import * as turf from "@turf/turf";
 import { useCallback, useState } from "react";
 import getStates from "./getState";
 
-const GEOFENCE = turf.circle([-52.4, -16.3], 5400, { units: "kilometers" });
 
+// Definindo os limites que o usuário pode navegar pelo mapa:
+const GEOFENCE = turf.polygon([
+  [
+    [-77, -143],
+    [-77, 8],
+    [-30, 8],
+    [-30, -143],
+    [-77, -143],
+  ],
+]);
+
+// Definindo o componente MapBody:
 function MapBody() {
+
+  // carregando geojson dos estados:
   const [geojson, setGeojson] = useState(false);
   const [loading, setLoading] = useState(true);
+
   if (loading) {
     const getGeojson = async () => {
       const res = await getStates();
@@ -18,13 +32,14 @@ function MapBody() {
     getGeojson();
   }
 
-
+  // Definindo o estado inicial do mapa:
   const [viewState, setViewState] = useState({
-    longitude: -52.4,
-    latitude: -16.3,
+    longitude: -47,
+    latitude: -15,
     zoom: 3.8,
   });
 
+  // Definindo a função que limita o usuário a navegar apenas dentro do GEOFENCE:
   const onMove = useCallback(({ viewState }) => {
     const newCenter = [viewState.longitude, viewState.latitude, viewState.zoom];
 
@@ -34,20 +49,31 @@ function MapBody() {
         latitude: viewState.latitude,
         zoom: viewState.zoom,
       });
+    } else {
+      setViewState({
+        longitude: -47,
+        latitude: -15,
+        zoom: viewState.zoom,
+      });
     }
   }, []);
 
+  // Retornando o componente MapBody:
   return (
-    <Map
-      {...viewState}
-      onMove={onMove}
-      mapboxAccessToken="pk.eyJ1IjoiY2FtYXJnMHZzIiwiYSI6ImNsbTFiczBubzBlZWEzanBla29sMHFhNngifQ.n91ThdPn4IujuqZy8V4mOg"
-      maxZoom={5.6}
-      minZoom={3.9}
-      doubleClickZoom={false}
-      style={{ width: "100%", height: "100vh" }}
+    <Map {...viewState} onMove={onMove} maxZoom={5} minZoom={3} doubleClickZoom={false} style={{ width: "100vw", height: "100vh"}}
       mapStyle="mapbox://styles/camarg0vs/clm1c13c401ub01p7g8sngg8x"
-    >
+      mapboxAccessToken="pk.eyJ1IjoiY2FtYXJnMHZzIiwiYSI6ImNsbGtyeHkwNzIzYXYzcW8xYTk4dXplOTkifQ.AeclKAsX4UhZf6xCfZgwPg">
+      
+      <Source type="geojson" data={GEOFENCE}>
+        <Layer
+          id="geofence-layer"
+          type="fill"
+          paint={{
+            "fill-color": "rgba(255, 255, 255, 0.3)",
+          }}
+        />
+      </Source>
+      
       {geojson &&
         geojson.map((geo) => {
           const layerStyle = {
