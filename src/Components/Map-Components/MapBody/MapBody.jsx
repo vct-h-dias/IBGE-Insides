@@ -2,45 +2,34 @@ import Map, { Source, Layer } from "react-map-gl";
 import * as turf from "@turf/turf";
 import { useCallback, useState } from "react";
 // import getStates from "./getState"; //hardcode :(
-
-import geojson from "./geojson.json";
-
-// Definindo os limites que o usuário pode navegar pelo mapa:
-const GEOFENCE = turf.circle([-52.4, -16.3], 5400, { units: "kilometers" });
-
-const layerStyle = {
-  id: "data",
-  type: "fill",
-  // line: "#000000",
-  paint: {
-    "fill-color": "#ffffff",
-    "fill-outline-color": "blue", // Cor do contorno
-  },
-};
+import geojson from "./geojson.json"; 
 
 function MapBody() {
   const [hoverInfo, setHoverInfo] = useState(null);
-
+  
   const onHover = useCallback((event) => {
     const {
       features,
       point: { x, y },
     } = event;
     const hoveredFeature = features && features[0];
-
+    
     setHoverInfo(hoveredFeature && { feature: hoveredFeature, x, y });
   }, []);
-
+  
   const [viewState, setViewState] = useState({
     longitude: -47,
     latitude: -15,
     zoom: 3.8,
   });
-
+  
+  // Definindo os limites que o usuário pode navegar pelo mapa:
+  const GEOFENCE = turf.circle([-52.4, -16.3], 5400, { units: "kilometers" });
+  
   // Definindo a função que limita o usuário a navegar apenas dentro do GEOFENCE:
   const onMove = useCallback(({ viewState }) => {
     const newCenter = [viewState.longitude, viewState.latitude, viewState.zoom];
-
+    
     if (turf.booleanPointInPolygon(newCenter, GEOFENCE)) {
       setViewState({
         longitude: viewState.longitude,
@@ -49,6 +38,15 @@ function MapBody() {
       });
     }
   }, []);
+  
+  const layerStyle = {
+    id: "data",
+    type: "fill",
+    paint: {
+      "fill-color": "#1E293B",
+      "fill-outline-color": "#2F3F58", // Cor do contorno
+    },
+  };
 
   // Retornando o componente MapBody:
   return (
@@ -66,13 +64,15 @@ function MapBody() {
       mapStyle="mapbox://styles/camarg0vs/clm1c13c401ub01p7g8sngg8x"
       onMouseMove={onHover}
       onClick={() => {
-        console.log(hoverInfo);
+      console.log(hoverInfo);
       }}
     >
       {/* Colocando a camada dos estados */}
       <Source type="geojson" data={geojson}>
-        <Layer {...layerStyle} paint={{"fill-color": 1 ? "#000000" : "#ffffff",}} />
+        <Layer {...layerStyle}  />
       </Source>
+
+      {/* paint={!!hoverInfo && ({"fill-color": 0 ? "#000000" : "#ffffff",})} */}
 
       {/* div de informações */}
       {!!hoverInfo && (

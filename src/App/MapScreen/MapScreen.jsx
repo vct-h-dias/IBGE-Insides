@@ -8,7 +8,7 @@ function MapScreen() {
     <>
       <div className='flex'>
         <MapBody/>
-        {/* <NavCorner/> */}
+        <NavCorner/>
       </div>
     </>
 
