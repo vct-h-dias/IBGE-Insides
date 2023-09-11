@@ -13,8 +13,7 @@ const layerStyle = {
   type: "fill",
   // line: "#000000",
   paint: {
-    "fill-color": "#fee08b",
-    "fill-opacity": 0.9,
+    "fill-color": "#ffffff",
     "fill-outline-color": "blue", // Cor do contorno
   },
 };
@@ -53,12 +52,14 @@ function MapBody() {
 
   // Retornando o componente MapBody:
   return (
-    <Map
+    /* OBS: Eu sei que era melhor só retornar o componente map... mas assim a gente consegue tirar o scrollBar */
+    <div className="overflow-hidden w-full h-full">
+       <Map
       {...viewState}
       onMove={onMove}
       mapboxAccessToken="pk.eyJ1IjoiY2FtYXJnMHZzIiwiYSI6ImNsbTFiczBubzBlZWEzanBla29sMHFhNngifQ.n91ThdPn4IujuqZy8V4mOg"
       maxZoom={5.6}
-      minZoom={3.9}
+      minZoom={3.0}
       interactiveLayerIds={["data"]}
       doubleClickZoom={false}
       style={{ width: "100%", height: "100vh" }}
@@ -68,27 +69,21 @@ function MapBody() {
         console.log(hoverInfo);
       }}
     >
+      {/* Colocando a camada dos estados */}
       <Source type="geojson" data={geojson}>
-        <Layer {...layerStyle} />
+        <Layer {...layerStyle} paint={{"fill-color": 1 ? "#000000" : "#ffffff",}} />
       </Source>
+
+      {/* div de informações */}
       {!!hoverInfo && (
-        <div
-          className="tooltip"
-          style={{
-            background: "rgba(173, 216, 230, 0.8)",
-            position: "absolute",
-            left: hoverInfo.x,
-            top: hoverInfo.y - 100,
-            padding: "10px",
-            pointerEvents: "none",
-          }}
-        >
+        <div className="tooltip absolute z-10 p-2 bg-blue-200 pointer-events-none top-0 right-0 w-56 text-right">
           <div>Estado: {hoverInfo.feature.properties.estado}</div>
           <div>Sigla: {hoverInfo.feature.properties.sigla}</div>
           <div>Code Area: {hoverInfo.feature.properties.codarea}</div>
         </div>
       )}
     </Map>
+    </div>
   );
 }
 
