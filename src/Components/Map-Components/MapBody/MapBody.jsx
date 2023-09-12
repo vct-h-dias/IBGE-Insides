@@ -1,6 +1,7 @@
 import Map, { Source, Layer } from "react-map-gl";
 import { useCallback, useRef, useState } from "react";
 import geojson from "./geojson.json";
+import aud from "../../../../public/audio/audio.mp3";
 
 function MapBody() {
   const [hoverInfo, setHoverInfo] = useState(null);
@@ -77,7 +78,7 @@ function MapBody() {
         onMouseMove={onHover}
         ref={mapRef}
         onClick={() => {
-          const audio = new Audio("/public/audio/audio.mp3");
+          const audio = new Audio(aud);
           audio.play();
           onSelectCity({longitude: 75, latitude: 9})
         }}
