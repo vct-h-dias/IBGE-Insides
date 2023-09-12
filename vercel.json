@@ -1,7 +1,7 @@
 {
   "rewrites":  [
     {"source": "/Map", "destination": "/"},
-    {"source": "/audio/audio.mp3", "destination": "/audio/audio.mp3"},
+    {"source": "/public/audio/audio.mp3", "destination": "/public/audio/audio.mp3"},
 
     {
       "source": "/view-source",
