@@ -1,5 +1,5 @@
 import Map, { Source, Layer } from "react-map-gl";
-import { useCallback, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import geojson from "./geojson.json";
 
 function MapBody() {
@@ -57,6 +57,11 @@ function MapBody() {
     },
   };
 
+  const mapRef = useRef();
+
+  const onSelectCity = useCallback(({longitude, latitude}) => {
+    mapRef.current?.flyTo({center: [longitude, latitude], duration: 5000});
+  }, []);
   return (
     <div className="overflow-hidden w-full h-full bg-slate-400">
       <Map
@@ -70,8 +75,11 @@ function MapBody() {
         style={{ width: "100%", height: "100vh" }}
         mapStyle="mapbox://styles/camarg0vs/clm1c13c401ub01p7g8sngg8x"
         onMouseMove={onHover}
+        ref={mapRef}
         onClick={() => {
-          console.log(hoverInfo);
+          const audio = new Audio("/meme/audio.mp3");
+          audio.play();
+          onSelectCity({longitude: 75, latitude: 9})
         }}
       >
         <Source type="geojson" data={geojson}>
