@@ -77,7 +77,7 @@ function MapBody() {
         onMouseMove={onHover}
         ref={mapRef}
         onClick={() => {
-          const audio = new Audio("../../../../meme/audio.mp3");
+          const audio = new Audio("../../../../public/audio/audio.mp3");
           audio.play();
           onSelectCity({longitude: 75, latitude: 9})
         }}
