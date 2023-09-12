@@ -1,6 +1,8 @@
 {
   "rewrites":  [
     {"source": "/Map", "destination": "/"},
+    {"source": "/audio/audio.mp3", "destination": "/audio/audio.mp3"},
+
     {
       "source": "/view-source",
       "destination": "https://github.com/vercel/vercel"
