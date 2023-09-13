@@ -42,11 +42,11 @@ function MapBody() {
     id: "data",
     type: "fill",
     paint: {
-      "fill-outline-color": "#2F3F58",
+      "fill-outline-color": ["case", ["==", ["get", "estado"], selectedCounty], "#0f172a", "#2F3F58"],
       "fill-color": [
         "case",
         ["==", ["get", "estado"], selectedCounty ? selectedCounty : null],
-        "#5DA7CF",
+        "#0f172a",
         "#1E293B",
       ],
       "fill-opacity": [
@@ -61,10 +61,10 @@ function MapBody() {
   const mapRef = useRef();
 
   const onSelectCity = useCallback(({longitude, latitude}) => {
-    mapRef.current?.flyTo({center: [longitude, latitude], duration: 5000});
+    mapRef.current?.flyTo({center: [longitude, latitude], duration: 2000});
   }, []);
   return (
-    <div className="overflow-hidden w-full h-full bg-slate-400">
+    <div className="overflow-hidden w-full h-full bg-gradient-to-r from-slate-800 via-slate-700 to-slate-800">
       <Map
         {...viewState}
         onMove={onMove}
@@ -78,9 +78,7 @@ function MapBody() {
         onMouseMove={onHover}
         ref={mapRef}
         onClick={() => {
-          const audio = new Audio(aud);
-          audio.play();
-          onSelectCity({longitude: 75, latitude: 9})
+          onSelectCity({longitude: -50, latitude: -15});
         }}
       >
         <Source type="geojson" data={geojson}>
