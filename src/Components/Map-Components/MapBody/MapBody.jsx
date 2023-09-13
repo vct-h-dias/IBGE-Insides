@@ -1,7 +1,7 @@
+import * as turf from "@turf/turf";
 import Map, { Source, Layer } from "react-map-gl";
 import { useCallback, useRef, useState } from "react";
 import geojson from "./geojson.json";
-import aud from "../../../../public/audio/audio.mp3";
 
 function MapBody() {
   const [hoverInfo, setHoverInfo] = useState(null);
@@ -59,9 +59,10 @@ function MapBody() {
   };
 
   const mapRef = useRef();
+  const GEOFENCE = turf.circle([-52.4, -16.3], 3000, { units: "kilometers" });
 
-  const onSelectCity = useCallback(({longitude, latitude}) => {
-    mapRef.current?.flyTo({center: [longitude, latitude], duration: 2000});
+  const onSelectCity = useCallback(({longitude, latitude}, duration) => {
+    mapRef.current?.flyTo({center: [longitude, latitude], duration: duration});
   }, []);
   return (
     <div className="overflow-hidden w-full h-full bg-gradient-to-r from-slate-800 via-slate-700 to-slate-800">
@@ -78,7 +79,15 @@ function MapBody() {
         onMouseMove={onHover}
         ref={mapRef}
         onClick={() => {
-          onSelectCity({longitude: -50, latitude: -15});
+          if(!!hoverInfo.county!=''){  
+            onSelectCity({longitude: hoverInfo.longitude, latitude: hoverInfo.latitude}, 1000);
+            
+          } else {
+            if (!turf.booleanPointInPolygon([hoverInfo.longitude, hoverInfo.latitude, hoverInfo.zoom], GEOFENCE)) {
+              onSelectCity({longitude: -47, latitude: -15}, 1000);
+            }
+          }
+          console.log(hoverInfo);
         }}
       >
         <Source type="geojson" data={geojson}>
