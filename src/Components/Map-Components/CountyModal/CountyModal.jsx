@@ -11,7 +11,7 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 500,
+  width: 'fit-content',
   border: 0,
   display: 'flex',
   justifyContent: 'center',
@@ -27,22 +27,29 @@ export default function CountyModal({
   ranking,
 }) {
   return (
-      <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
-        <Box sx={style}>
-          <div className="flex justify-center px-32 py-4 bg-slate-800 text-slate-50 text-2xl w-full">
-            <h1>{countyName}</h1>
-          </div>
+    <Modal
+      open={open}
+      onClose={handleClose}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description"
+    >
+      <Box sx={style}>
+        <div className="flex justify-center px-32 py-4 bg-slate-800 text-slate-50 text-2xl w-full rounded-t-sm">
+          <h1>{countyName}</h1>
+        </div>
 
-          <div className="bg-slate-50 pt-2 p-4 w-full">
+        <div className="bg-slate-50 pt-2 p-4 w-[25vw]">
           <div className=" mb-2 border-b-[1px] border-slate-950 pb-2">
-            <h1 className='border-b-2 border-slate-950 text-xl mx-auto w-fit'>Ranking</h1>
+            <h1 className="border-b-2 border-slate-950 text-xl mx-auto w-fit">
+              Ranking
+            </h1>
           </div>
           <div className="flex justify-around">
-            <div className="w-1/2">
-              <h1>Nomes</h1>
+            <div className="w-1/2 font-bold">
+              <h1>Nome</h1>
             </div>
-            <div className="w-1/2 justify-end flex">
-              <h1>Quantidade de pessoas</h1>
+            <div className="w-1/2 justify-end flex font-bold">
+              <h1>Frequencia</h1>
             </div>
           </div>
           {!!ranking && (
@@ -59,11 +66,11 @@ export default function CountyModal({
               ))}
             </div>
           )}
-        </div>
-        <div className="bg-slate-50 pl-4 p-2 border-t-[1px] border-slate-950 text-center w-full">
+          <div className="bg-slate-50 pt-2 mt-3 mx-2 border-t-[1px] rounded-b-sm border-slate-950 text-center w-full">
             <h1>CodeArea: {codeArea}</h1>
           </div>
-        </Box>
-      </Modal>
+        </div>
+      </Box>
+    </Modal>
   );
 }
