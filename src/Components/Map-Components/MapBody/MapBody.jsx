@@ -2,6 +2,7 @@ import * as turf from "@turf/turf";
 import Map, { Source, Layer } from "react-map-gl";
 import { useCallback, useRef, useState } from "react";
 import geojson from "./geojson.json";
+import CountyModal from "../CountyModal/CountyModal";
 
 function MapBody() {
   const [hoverInfo, setHoverInfo] = useState(null);
@@ -42,7 +43,12 @@ function MapBody() {
     id: "data",
     type: "fill",
     paint: {
-      "fill-outline-color": ["case", ["==", ["get", "estado"], selectedCounty], "#0f172a", "#2F3F58"],
+      "fill-outline-color": [
+        "case",
+        ["==", ["get", "estado"], selectedCounty],
+        "#0f172a",
+        "#2F3F58",
+      ],
       "fill-color": [
         "case",
         ["==", ["get", "estado"], selectedCounty ? selectedCounty : null],
@@ -61,9 +67,20 @@ function MapBody() {
   const mapRef = useRef();
   const GEOFENCE = turf.circle([-52.4, -16.3], 3000, { units: "kilometers" });
 
-  const onSelectCity = useCallback(({longitude, latitude}, duration) => {
-    mapRef.current?.flyTo({center: [longitude, latitude], duration: duration});
+  const onSelectCity = useCallback(({ longitude, latitude }, duration) => {
+    mapRef.current?.flyTo({
+      center: [longitude, latitude],
+      duration: duration,
+    });
   }, []);
+
+  const [modalOpen, setModalOpen] = useState(false);
+
+  //HARCODE
+  const [clickedCounty, setClickedCounty] = useState(false);
+  const [clickedCodeArea, setClickedCodeArea] = useState(false);
+
+
   return (
     <div className="overflow-hidden w-full h-full bg-gradient-to-r from-slate-800 via-slate-700 to-slate-800">
       <Map
@@ -81,6 +98,9 @@ function MapBody() {
         onClick={() => {
           if(!!hoverInfo.county!=''){  
             onSelectCity({longitude: hoverInfo.longitude, latitude: hoverInfo.latitude}, 1000);
+            setClickedCodeArea(hoverInfo.codearea);
+            setClickedCounty(hoverInfo.county);
+            setModalOpen(true);
             
           } else {
             if (!turf.booleanPointInPolygon([hoverInfo.longitude, hoverInfo.latitude, hoverInfo.zoom], GEOFENCE)) {
@@ -94,6 +114,12 @@ function MapBody() {
           <Layer {...layerStyle} />
         </Source>
       </Map>
+      <CountyModal
+        open={modalOpen}
+        handleClose={() => setModalOpen(false)}
+        countyName={clickedCounty}
+        codeArea={clickedCodeArea}
+      />
     </div>
   );
 }
