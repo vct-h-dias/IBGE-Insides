@@ -105,6 +105,7 @@ function MapBody() {
               setClickedCounty(selectedCounty);
               setClickedCodeArea(hoverInfo.codearea);
               setRanking(res[0].res)
+              console.log(ranking)
               setModalOpen(true);
             })
             
