@@ -11,7 +11,7 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 'fit-content',
+  width: '30rem',
   border: 0,
   display: 'flex',
   justifyContent: 'center',
@@ -38,7 +38,7 @@ export default function CountyModal({
           <h1>{countyName}</h1>
         </div>
 
-        <div className="bg-slate-50 pt-2 p-4 w-[25vw]">
+        <div className="bg-slate-50 pt-2 p-4 w-full">
           <div className=" mb-2 border-b-[1px] border-slate-950 pb-2">
             <h1 className="border-b-2 border-slate-950 text-xl mx-auto w-fit">
               Ranking
