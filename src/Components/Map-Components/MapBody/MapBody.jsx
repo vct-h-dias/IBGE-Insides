@@ -3,6 +3,8 @@ import Map, { Source, Layer } from "react-map-gl";
 import { useCallback, useRef, useState } from "react";
 import geojson from "./geojson.json";
 import CountyModal from "../CountyModal/CountyModal";
+import { getCountyMesh } from "../CountyModal/getCountyMesh";
+import { getRankingNames } from "../CountyModal/getRankingNames";
 
 function MapBody() {
   const [hoverInfo, setHoverInfo] = useState(null);
@@ -79,6 +81,7 @@ function MapBody() {
   //HARCODE
   const [clickedCounty, setClickedCounty] = useState(false);
   const [clickedCodeArea, setClickedCodeArea] = useState(false);
+  const [ranking, setRanking] = useState(null);
 
 
   return (
@@ -98,16 +101,18 @@ function MapBody() {
         onClick={() => {
           if(!!hoverInfo.county!=''){  
             onSelectCity({longitude: hoverInfo.longitude, latitude: hoverInfo.latitude}, 1000);
-            setClickedCodeArea(hoverInfo.codearea);
-            setClickedCounty(hoverInfo.county);
-            setModalOpen(true);
+            getRankingNames(hoverInfo.codearea).then((res) => {
+              setClickedCounty(selectedCounty);
+              setClickedCodeArea(hoverInfo.codearea);
+              setRanking(res[0].res)
+              setModalOpen(true);
+            })
             
           } else {
             if (!turf.booleanPointInPolygon([hoverInfo.longitude, hoverInfo.latitude, hoverInfo.zoom], GEOFENCE)) {
               onSelectCity({longitude: -47, latitude: -15}, 1000);
             }
           }
-          console.log(hoverInfo);
         }}
       >
         <Source type="geojson" data={geojson}>
@@ -119,6 +124,7 @@ function MapBody() {
         handleClose={() => setModalOpen(false)}
         countyName={clickedCounty}
         codeArea={clickedCodeArea}
+        ranking={ranking}
       />
     </div>
   );
