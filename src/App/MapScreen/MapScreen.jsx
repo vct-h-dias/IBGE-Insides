@@ -1,6 +1,6 @@
-import './MapScreen.css'
-import NavCorner from '../../Components/Map-Components/NavCorner/NavCorner.jsx'
+import BackBtn from '../../Components/Map-Components/BackBtn/BackBtn.jsx'
 import MapBody from '../../Components/Map-Components/MapBody/MapBody'
+import SearchNavBar from '../../Components/Map-Components/SearchNavBar/SearchNavBar.jsx'
 
 function MapScreen() {
   return (
@@ -8,7 +8,8 @@ function MapScreen() {
     <>
       <div className='flex'>
         <MapBody/>
-        <NavCorner/>
+        <BackBtn/>
+        <SearchNavBar/>
       </div>
     </>
 
