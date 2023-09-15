@@ -18,9 +18,9 @@ const SearchNavBar = () => {
         <>  
             <div id='searchNavBar' className='hidden fixed right-0 h-full w-96 bg-slate-50 duration-75'>
                 <div className='flex bg-slate-800 justify-center'>
-                    <div className='absolute flex items-center justify-center h-[4.5rem] w-[4.5rem] left-0'>
+                    <div className='absolute flex items-center pl-4 h-[4.5rem] w-[4.5rem] left-0'>
                         <button onClick={closeFunc}>
-                            <BsXLg className='text-slate-300 hover:text-slate-50 duration-75' size={30}/>
+                            <BsXLg className='text-slate-300 hover:text-slate-50 duration-75' size={25}/>
                         </button>
                     </div>
                     <h1 className='text-slate-50 text-2xl p-5 text-center px-10'>Filtrar</h1>
