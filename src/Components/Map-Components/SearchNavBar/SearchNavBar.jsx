@@ -26,11 +26,11 @@ const SearchNavBar = () => {
                     <h1 className='text-slate-50 text-2xl p-5 text-center px-10'>Filtrar</h1>
                 </div>
             </div>
-            <div id='openBtn' className='fixed mt-3 mr-2 right-0 h-11 w-11 flex items-center justify-center border-[1px] bg-slate-800 hover:bg-slate-700 border-slate-400 duration-75'>
-                <button onClick={openFunc}>
-                    <BsFilter className='text-slate-50' size={35}/>
-                </button>
-            </div>
+
+
+            <button className='group fixed flex items-center m-3 right-0 gap-1 z-10 w-11 h-11 p-1 pr-2 border-[1px] border-slate-400 text-slate-50 bg-slate-800 hover:bg-slate-700 hover:w-fit hover:px-3 duration-75' onClick={openFunc}>
+                <BsFilter className='text-slate-50' size={35}/> <p className='hidden group-hover:flex'>Exibir filtragem</p> 
+            </button>
         </>
     )
 }
