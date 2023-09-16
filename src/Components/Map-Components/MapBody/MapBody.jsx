@@ -3,11 +3,17 @@ import Map, { Source, Layer } from "react-map-gl";
 import { useCallback, useRef, useState } from "react";
 import geojson from "./geojson.json";
 import CountyModal from "../CountyModal/CountyModal";
-import { getCountyMesh } from "../CountyModal/getCountyMesh";
+import { BsFilter } from 'react-icons/bs'
+// import { getCountyMesh } from "../CountyModal/getCountyMesh";
 import { getRankingNames } from "../CountyModal/getRankingNames";
+
+import SearchNavBar from '../SearchNavBar/SearchNavBar.jsx'
+import BackBtn from '../BackBtn/BackBtn.jsx'
 
 function MapBody() {
   const [hoverInfo, setHoverInfo] = useState(null);
+  
+  const [openNavBar, setOpenNavBar] = useState(false);
 
   const onHover = useCallback((event) => {
     const county = event.features[0] ? event.features[0].properties.estado : "";
@@ -85,49 +91,60 @@ function MapBody() {
 
 
   return (
-    <div className="overflow-hidden w-full h-full bg-gradient-to-r from-slate-800 via-slate-700 to-slate-800">
-      <Map
-        {...viewState}
-        onMove={onMove}
-        mapboxAccessToken="pk.eyJ1IjoiY2FtYXJnMHZzIiwiYSI6ImNsbGtyeHkwNzIzYXYzcW8xYTk4dXplOTkifQ.AeclKAsX4UhZf6xCfZgwPg"
-        maxZoom={5.6}
-        minZoom={2.0}
-        interactiveLayerIds={["data"]}
-        doubleClickZoom={false}
-        style={{ width: "100%", height: "100vh" }}
-        mapStyle="mapbox://styles/camarg0vs/clm1c13c401ub01p7g8sngg8x"
-        onMouseMove={onHover}
-        ref={mapRef}
-        onClick={() => {
-          if(!!hoverInfo.county!=''){  
-            onSelectCity({longitude: hoverInfo.longitude, latitude: hoverInfo.latitude}, 1000);
-            getRankingNames(hoverInfo.codearea).then((res) => {
-              setClickedCounty(selectedCounty);
-              setClickedCodeArea(hoverInfo.codearea);
-              setRanking(res[0].res)
-              console.log(ranking)
-              setModalOpen(true);
-            })
-            
-          } else {
-            if (!turf.booleanPointInPolygon([hoverInfo.longitude, hoverInfo.latitude, hoverInfo.zoom], GEOFENCE)) {
-              onSelectCity({longitude: -47, latitude: -15}, 1000);
+    <>
+      <div className='z-50'>
+        <BackBtn/>
+      </div>
+      <div className="overflow-hidden w-full h-full bg-gradient-to-r from-slate-800 via-slate-700 to-slate-800">
+        <Map
+          {...viewState}
+          onMove={onMove}
+          mapboxAccessToken="pk.eyJ1IjoiY2FtYXJnMHZzIiwiYSI6ImNsbGtyeHkwNzIzYXYzcW8xYTk4dXplOTkifQ.AeclKAsX4UhZf6xCfZgwPg"
+          maxZoom={5.6}
+          minZoom={2.0}
+          interactiveLayerIds={["data"]}
+          doubleClickZoom={false}
+          style={{ width: "100%", height: "100vh" }}
+          mapStyle="mapbox://styles/camarg0vs/clm1c13c401ub01p7g8sngg8x"
+          onMouseMove={onHover}
+          ref={mapRef}
+          onClick={() => {
+            if(!!hoverInfo.county!=''){  
+              onSelectCity({longitude: hoverInfo.longitude, latitude: hoverInfo.latitude}, 1000);
+              getRankingNames(hoverInfo.codearea).then((res) => {
+                setClickedCounty(selectedCounty);
+                setClickedCodeArea(hoverInfo.codearea);
+                setRanking(res[0].res)
+                console.log(ranking)
+                setModalOpen(true);
+              })
+              
+            } else {
+              if (!turf.booleanPointInPolygon([hoverInfo.longitude, hoverInfo.latitude, hoverInfo.zoom], GEOFENCE)) {
+                onSelectCity({longitude: -47, latitude: -15}, 1000);
+              }
             }
-          }
-        }}
-      >
-        <Source type="geojson" data={geojson}>
-          <Layer {...layerStyle} />
-        </Source>
-      </Map>
-      <CountyModal
-        open={modalOpen}
-        handleClose={() => setModalOpen(false)}
-        countyName={clickedCounty}
-        codeArea={clickedCodeArea}
-        ranking={ranking}
-      />
+          }}
+        >
+          <Source type="geojson" data={geojson}>
+            <Layer {...layerStyle} />
+          </Source>
+        </Map>
+        <CountyModal
+          open={modalOpen}
+          handleClose={() => setModalOpen(false)}
+          countyName={clickedCounty}
+          codeArea={clickedCodeArea}
+          ranking={ranking}
+        />
     </div>
+    <div className='z-50 absolute right-0'>
+      <button onClick={() => setOpenNavBar(true)} className='group z-10 flex items-center m-3 right-0 gap-1 w-11 h-11 p-1 pr-2 border-[1px] border-slate-400 text-slate-50 bg-slate-800 hover:bg-slate-700 hover:w-fit hover:px-3 duration-75'>
+          <BsFilter className='text-slate-50' size={35}/> <p className='hidden group-hover:flex'>Filtrar</p> 
+      </button>
+      <SearchNavBar setOpenNavBar={setOpenNavBar} openNavBar={openNavBar}/>
+    </div>
+    </>
   );
 }
 
