@@ -1,21 +1,16 @@
-import './App.css'
-
-import LandingPage from './LandingPage/LandingPage.jsx'
-import MapScreen from './MapScreen/MapScreen.jsx'
-
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import LandingPage from './Pages/LandingPage'
+import MapScreen from './Pages/MapScreen'
 
 function App() {
   return (
-    
     <Router>
       <Routes>
-        <Route path='/' element={<LandingPage/> }/>
-        <Route path='/Map' element={<MapScreen/>} />
+        <Route path="/" element={<LandingPage/>}/>
+        <Route path="/Map" element = {<MapScreen/>}/>
       </Routes>
     </Router>
-
-  )
+  );
 }
 
-export default App
+export default App;

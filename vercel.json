@@ -1,11 +1,10 @@
 {
-  "rewrites":  [
-    {"source": "/Map", "destination": "/"},
-    {"source": "/public/audio/audio.mp3", "destination": "/"},
-
-    {
-      "source": "/view-source",
-      "destination": "https://github.com/vercel/vercel"
-    }
-  ]
-}
+    "rewrites":  [
+      {"source": "/Map", "destination": "/"},
+  
+      {
+        "source": "/view-source",
+        "destination": "https://github.com/vercel/vercel"
+      }
+    ]
+  }
