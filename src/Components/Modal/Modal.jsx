@@ -39,7 +39,7 @@ export default function Modaldiv({
 
         <div className="bg-slate-50 pt-2 p-4 w-full">
           <div className=" mb-2 border-b-[1px] border-slate-300 pb-2">
-            <h1 className="border-b-2 border-slate-950 text-xl mx-auto w-fit">
+            <h1 className="text-xl text-center pb-2">
               <UnderlineTx text="Ranking" />
             </h1>
           </div>
@@ -67,6 +67,12 @@ export default function Modaldiv({
           )}
           <div className="bg-slate-50 pt-2 mt-3 mx-2 border-t-[1px] rounded-b-sm border-slate-300 text-center w-full">
             <h1>CodeArea: {codeArea}</h1>
+          </div>
+          <div>
+            {/* a href para a página que exibe mais detalhes do estado */}
+            <a href={'./'} rel="noreferrer" className="flex justify-center items-center mt-2 bg-slate-800 hover:bg-slate-600 text-slate-50 p-2 rounded-sm duration-75">
+              <h1>Ver mais detalhes</h1>
+            </a>
           </div>
         </div>
       </Box>
