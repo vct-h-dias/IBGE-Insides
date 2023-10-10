@@ -19,6 +19,16 @@ function Drawerbar() {
     setIsOpen((prevState) => !prevState);
   };
 
+  // Funções para as tabs:
+  const [tabState, setTabState] = React.useState(1);
+
+  const togleTab = (value) => {
+    setTabState(value);
+  }
+
+  const tabStyle ="bg-slate-100 py-5 border-t-4 border-slate-100 w-1/2 flex justify-center hover:bg-slate-200 hover:border-slate-200 duration-75 cursor-pointer";
+  const activeTabStyle = "py-5 border-t-4 border-blue-700 w-1/2 flex justify-center duration-75 cursor-pointer";
+
   return (
     <>
       <button
@@ -50,10 +60,13 @@ function Drawerbar() {
         </button>
         <div>
           <div className="bg-slate-800 flex p-5 justify-center text-xl text-white">
-            <h1>Filtrar dados</h1>
+            <h1>Análise dos dados</h1>
           </div>
 
-          <div>// Opções de filtro</div>
+          <div className='flex'>
+            <div onClick={() => togleTab(1)} className={tabState === 1 ? activeTabStyle : tabStyle}>Filtrar</div>
+            <div onClick={() => togleTab(2)} className={tabState === 2 ? activeTabStyle : tabStyle}>Ranking</div>
+          </div>
 
           <div className="absolute w-full bottom-0 border-t-[1px] p-3 hover:bg-slate-100 text-slate-600 duration-75">
             <a href="./" className="flex items-center justify-center">
