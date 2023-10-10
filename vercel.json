@@ -1,6 +1,7 @@
 {
     "rewrites":  [
       {"source": "/Map", "destination": "/"},
+      {"source": "/Estado", "destination": "/"},
   
       {
         "source": "/view-source",

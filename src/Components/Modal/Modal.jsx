@@ -70,7 +70,7 @@ export default function Modaldiv({
           </div>
           <div>
             {/* a href para a página que exibe mais detalhes do estado */}
-            <a href={'./'} rel="noreferrer" className="flex justify-center items-center mt-2 bg-slate-800 hover:bg-slate-600 text-slate-50 p-2 rounded-sm duration-75">
+            <a href={'./Estado'} rel="noreferrer" className="flex justify-center items-center mt-2 bg-slate-800 hover:bg-slate-600 text-slate-50 p-2 rounded-sm duration-75">
               <h1>Ver mais detalhes</h1>
             </a>
           </div>
