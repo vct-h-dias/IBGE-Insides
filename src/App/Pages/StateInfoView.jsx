@@ -270,7 +270,7 @@ function StateInfoView() {
         </div>
 
         <div className="flex justify-between px-28 pt-14">
-          <div className=" min-w-[25rem] border shadow-xl">
+          <div className=" min-w-[25rem] border shadow-lg">
             <div className="border-b p-5 flex justify-center bg-slate-800 text-slate-50">
               <h1 className="text-2xl">filtros</h1>
             </div>
