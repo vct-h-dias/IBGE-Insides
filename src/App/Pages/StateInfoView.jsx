@@ -14,7 +14,7 @@ function StateInfoView() {
       <Header />
       <div className="flex px-40 gap-8 py-10 justify-between border-b pt-28">
         <div className="border-[1px] rounded-sm w-1/2 group">
-          <div className="border-b p-5 flex justify-center">
+          <div className="border-b p-5 flex justify-center bg-slate-800 text-slate-50">
             <h1 className="text-2xl">Estado Selecionado</h1>
           </div>
           <div className="flex m-6 items-center">
@@ -47,7 +47,7 @@ function StateInfoView() {
         </div>
 
         <div className="border-[1px] rounded-sm w-1/2">
-          <div className="border-b p-5 flex justify-center">
+          <div className="border-b p-5 flex justify-center bg-slate-800 text-slate-50">
             <h1 className="text-2xl">Outros estados</h1>
           </div>
           <div className="grid p-5">
@@ -261,15 +261,43 @@ function StateInfoView() {
           </div>
         </div>
       </div>
-      <div className="h-screen" />
-      {/* <div className='flex'>
-                <div className='bg-slate-100'>
-                    filtros
-                </div>
-                <div className=''>
-                    <img src="https://placehold.co/1000x600" alt="gráfico" />
-                </div>
-            </div> */}
+
+      <div>
+        <div className="text-center mt-10">
+          <h1 className="text-3xl">
+            <UnderlineTx text={"Analisando dados"} />
+          </h1>
+        </div>
+
+        <div className="flex justify-between px-28 pt-14">
+          <div className=" min-w-[25rem] border shadow-xl">
+            <div className="border-b p-5 flex justify-center bg-slate-800 text-slate-50">
+              <h1 className="text-2xl">filtros</h1>
+            </div>
+          </div>
+          <div className="w-[1200px] h-[600px] border">
+            <img
+              className="w-[1200px] h-[600px] border-b"
+              src="https://d2w9rnfcy7mm78.cloudfront.net/14256899/original_19504a1513c73fa85db68c8fba667f7d.png?1638788267?bc=0"
+              alt="gráfico"
+            />
+          </div>
+        </div>
+
+        <div className="flex justify-center mt-28">
+          <div>
+            <div>
+              <h1 className="border-b p-5 flex justify-center bg-slate-800 text-slate-50">
+                <h1 className='text-2xl'>Ranking</h1>
+              </h1>
+            </div>
+            <div className='w-[1200px] h-[600px] border'>
+              <img src="https://extra.globo.com/incoming/24278153-b3c-c03/w640h360-PROP/grafico-fgv-redes.png" alt="Ranking" className='w-[1200px] h-[600px] border-b'/>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <Footer />
     </>
   );
