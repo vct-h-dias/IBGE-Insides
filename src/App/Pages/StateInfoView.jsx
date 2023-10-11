@@ -3,22 +3,26 @@ import React from "react";
 // Components:
 import CardImage from "../../Components/CardImage/CardImage.jsx";
 import UnderlineTx from "../../Components/Basic/UnderlineTx.jsx";
+
+import Header from "../../Components/Header/Header.jsx";
+import Footer from "../../Components/Footer/Footer.jsx";
 // Images:
 
 function StateInfoView() {
   return (
     <>
-      <div className="flex px-40 gap-8 py-10 justify-between border-b">
+      <Header />
+      <div className="flex px-40 gap-8 py-10 justify-between border-b pt-28">
         <div className="border-[1px] rounded-sm w-1/2 group">
           <div className="border-b p-5 flex justify-center">
             <h1 className="text-2xl">Estado Selecionado</h1>
           </div>
-          <div className='flex m-6 items-center'>
+          <div className="flex m-6 items-center">
             <div className="flex w-[350px] h-[350px] border-[1px] rounded-sm overflow-hidden">
               <img
                 src="https://servicodados.ibge.gov.br/api/v3/malhas/paises/BR?formato=image/svg+xml&qualidade=maxima"
                 alt="state"
-                className="w-[350px] h-[350px] group-hover:scale-105 duration-75"
+                className="w-[350px] h-[350px]"
               />
             </div>
             <div className="pl-10">
@@ -51,7 +55,7 @@ function StateInfoView() {
               type="text"
               name="stateFinder"
               id="stateFinder"
-              placeholder="Digite o nome de um estado brasileiro..."
+              placeholder="Procure um estado brasileiro..."
               className="p-[5px] pl-3 hover:pl-4 focus:pl-5 focus:border-slate-950 duration-75 border outline-none"
             />
           </div>
@@ -257,6 +261,7 @@ function StateInfoView() {
           </div>
         </div>
       </div>
+      <div className="h-screen" />
       {/* <div className='flex'>
                 <div className='bg-slate-100'>
                     filtros
@@ -265,6 +270,7 @@ function StateInfoView() {
                     <img src="https://placehold.co/1000x600" alt="gráfico" />
                 </div>
             </div> */}
+      <Footer />
     </>
   );
 }
