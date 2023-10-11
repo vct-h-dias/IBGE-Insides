@@ -1,6 +1,8 @@
 {
-  "rewrites":  [
-    {"source": "/Map", "destination": "/"},
+  "rewrites": [
+    { "source": "/Map", "destination": "/" },
+    { "source": "/Estado", "destination": "/" },
+
     {
       "source": "/view-source",
       "destination": "https://github.com/vercel/vercel"
