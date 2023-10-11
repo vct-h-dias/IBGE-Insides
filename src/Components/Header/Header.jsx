@@ -8,7 +8,7 @@ function Header() {
       <div>
         <ul className="flex">
           <li className="mr-5">
-            <a href="#" className="text-slate-500 hover:text-black">
+            <a href="./" className="text-slate-500 hover:text-black">
               Início
             </a>
           </li>

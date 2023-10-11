@@ -234,7 +234,7 @@ function LandingPage() {
             title="Visualização de dados"
             description="A análise de dados no NAMICZ permite entender a distribuição geográfica de nomes de pessoas, revelando preferências culturais e variações regionais. Isso ajuda os usuários a compreender as características demográficas de uma região e é útil em pesquisas socioculturais, estudos de mercado e planejamento urbano."
             image={brasilCardImg}
-            goTo="/estados/brasil"
+            goTo="/Estado"
           />
           <Card
             title="Ranking de nomes"
