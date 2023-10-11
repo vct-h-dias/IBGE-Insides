@@ -6,7 +6,6 @@ import UnderlineTx from "../../Components/Basic/UnderlineTx.jsx";
 
 import Header from "../../Components/Header/Header.jsx";
 import Footer from "../../Components/Footer/Footer.jsx";
-// Images:
 
 function StateInfoView() {
   return (
